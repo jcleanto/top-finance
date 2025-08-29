@@ -29,6 +29,7 @@ export class FinanceService {
 
   // update an existent Finance
   async updateFinance(financeId: number, updatedFinance: updatedFinance): Promise<boolean> {
+    updatedFinance.updatedAt = new Date().toISOString();
     await this.FinanceClass.query().update(updatedFinance).where('id', financeId);
     return true;
   }

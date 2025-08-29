@@ -4,4 +4,5 @@ export class updatedFinance {
   descricao?: string;
   isDeleted?: boolean;
   deletedAt?: string;
+  updatedAt?: string;
 }
