@@ -65,7 +65,7 @@ export class FinanceController {
     }
     const updatedFinance = await this.financeService.findFinanceById(financeId);
     return response
-      .status(201)
+      .status(200)
       .send({ message: 'Lançamento Financeiro atualizado com sucesso', data: updatedFinance });
   }
 
@@ -86,7 +86,7 @@ export class FinanceController {
     }
     const deletedFinance = await this.financeService.findFinanceById(financeId);
     return response
-      .status(201)
+      .status(200)
       .send({ message: 'Lançamento Financeiro deletado com sucesso', data: deletedFinance });
   }
 }
