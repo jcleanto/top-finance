@@ -9,6 +9,8 @@ async function bootstrap() {
     origin: [
       'http://127.0.0.1:5002',
       'http://localhost:5002',
+      'http://127.0.0.1:5000',
+      'http://localhost:5000',
     ],
     methods: ['GET', 'HEAD', 'PUT', 'PATCH', 'POST', 'DELETE'],
     credentials: true,
