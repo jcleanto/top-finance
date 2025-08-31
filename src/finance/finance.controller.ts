@@ -13,7 +13,7 @@ export class FinanceController {
     const allFinances = await this.financeService.findAllFinances();
     return response
       .status(200)
-      .send({ message: 'Todos os Lançamentos Financeiros logicamente não deletados (isDeleted=false)', data: allFinances });
+      .send({ message: 'Todos os Lançamentos Financeiros logicamente não deletados (isDeleted=false)', data: allFinances, count: allFinances.length });
   }
 
   @Get('/:financeId')
@@ -33,7 +33,7 @@ export class FinanceController {
   }
 
   @Post('/new')
-  async createUser(@Body() financeDto: newFinance, @Res() response: Response) {
+  async createFinance(@Body() financeDto: newFinance, @Res() response: Response) {
     try {
       const newFinance = await this.financeService.createFinance(financeDto);
       return response
@@ -45,7 +45,7 @@ export class FinanceController {
   }
 
   @Patch('/:financeId/update')
-  async updateUser(
+  async updateFinance(
     @Param('financeId', ParseIntPipe) financeId: number,
     @Body() updateFinanceDto: updatedFinance,
     @Res() response: Response,
@@ -70,7 +70,7 @@ export class FinanceController {
   }
 
   @Delete('/:financeId')
-  async deleteUserById(
+  async deleteFinanceById(
     @Param('financeId', ParseIntPipe) financeId: number,
     @Res() response: Response,
   ) {
