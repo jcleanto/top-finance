@@ -4,9 +4,11 @@ const config: { [key: string]: Knex.Config } = {
   development: {
     client: "postgresql",
     connection: {
+      host: "postgres_db_top_finance",
       database: "top_finance",
       user: "postgres",
-      password: "D0us5xm4"
+      password: "D0us5xm4",
+      port: 5432,
     },
     pool: {
       min: 2,
@@ -14,15 +16,20 @@ const config: { [key: string]: Knex.Config } = {
     },
     migrations: {
       tableName: "knex_migrations"
-    }
+    },
+    seeds: {
+      directory: './seeds',
+    },
   },
 
   staging: {
     client: "postgresql",
     connection: {
+      host: "postgres_db_top_finance",
       database: "top_finance",
       user: "postgres",
-      password: "D0us5xm4"
+      password: "D0us5xm4",
+      port: 5432,
     },
     pool: {
       min: 2,
@@ -30,15 +37,20 @@ const config: { [key: string]: Knex.Config } = {
     },
     migrations: {
       tableName: "knex_migrations"
-    }
+    },
+    seeds: {
+      directory: './seeds',
+    },
   },
 
   production: {
     client: "postgresql",
     connection: {
+      host: "postgres_db_top_finance",
       database: "top_finance",
       user: "postgres",
-      password: "D0us5xm4"
+      password: "D0us5xm4",
+      port: 5432,
     },
     pool: {
       min: 2,
@@ -46,7 +58,10 @@ const config: { [key: string]: Knex.Config } = {
     },
     migrations: {
       tableName: "knex_migrations"
-    }
+    },
+    seeds: {
+      directory: './seeds',
+    },
   }
 
 };
