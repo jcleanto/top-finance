@@ -84,4 +84,50 @@ describe('FinanceService', () => {
       expect(FinanceModel.query().insert).toHaveBeenCalledWith(newFinance);
     });
   });
+
+  describe('updateFinance', () => {
+    it('should update a finance', async () => {
+      const updateFinance = {
+        id: 1,
+        userId: 1,
+        valor: 10.1,
+        descricao: 'Descrição 1'
+      };
+      const updatedUser = { descricao: 'Descrição 11', ...updateFinance };
+
+      jest.spyOn(FinanceModel, 'query').mockReturnValue({
+        update: jest.fn().mockResolvedValue(updatedUser).mockReturnValue({
+          where: jest.fn()
+        } as any),
+      } as any);
+
+      const result = await service.updateFinance(updateFinance.id, updateFinance);
+      expect(result).toBeTruthy();
+      expect(FinanceModel.query).toHaveBeenCalled();
+      expect(FinanceModel.query().update).toHaveBeenCalledWith(updateFinance);
+    });
+  });
+
+  describe('deleteFinance', () => {
+    it('should delete a finance', async () => {
+      const deleteFinance = {
+        id: 1,
+        userId: 1,
+        valor: 10.1,
+        descricao: 'Descrição 1'
+      };
+      const deletedFinance = { isDeleted: true, deletedAt: new Date().toISOString() };
+
+      jest.spyOn(FinanceModel, 'query').mockReturnValue({
+        update: jest.fn().mockResolvedValue(deleteFinance).mockReturnValue({
+          where: jest.fn()
+        } as any),
+      } as any);
+
+      const result = await service.deleteFinance(deleteFinance.id);
+      expect(result).toBeTruthy();
+      expect(FinanceModel.query).toHaveBeenCalled();
+      expect(FinanceModel.query().update).toHaveBeenCalledWith(deletedFinance);
+    });
+  });
 });
