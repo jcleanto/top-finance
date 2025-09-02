@@ -24,6 +24,12 @@ describe('FinanceController', () => {
     expect(statusResponseMock.send).toHaveBeenCalledWith(result);
   });
 
+  it('Should get all finances by user id', async () => {
+    const result = await financeController.getAllFinancesByUserId(1, responseMock);
+    expect(responseMock.status).toHaveBeenCalledWith(200);
+    expect(statusResponseMock.send).toHaveBeenCalledWith(result);
+  });
+
   it('Should get finance', async () => {
     const result = await financeController.getFinanceById(financeMock.id, responseMock);
     expect(responseMock.status).toHaveBeenCalledWith(200);

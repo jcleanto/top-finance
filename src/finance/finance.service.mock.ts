@@ -31,6 +31,7 @@ export const financeServiceMock = {
     useValue: {
       findFinanceById: jest.fn().mockResolvedValue(financeMock),
       findAllFinances: jest.fn().mockResolvedValue([financeMock]),
+      findAllFinancesByUserId: jest.fn().mockResolvedValue([financeMock]),
       createFinance: jest.fn().mockResolvedValue(financeMock),
       updateFinance: jest.fn().mockResolvedValue(financeMock),
       deleteFinance: jest.fn().mockResolvedValue(true)

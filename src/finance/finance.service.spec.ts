@@ -69,6 +69,33 @@ describe('FinanceService', () => {
     });
   });
 
+  describe('findAllFinancesByUserId', () => {
+    it('should return a list of non-deleted finances by user id if found', async () => {
+      const mockFinances = [
+        { id: 1, userId: 1, valor: 10.1, descricao: 'Descrição 1' },
+        { id: 2, userId: 1, valor: 20.2, descricao: 'Descrição 2' },
+        { id: 3, userId: 1, valor: 30.3, descricao: 'Descrição 3' },
+      ];
+
+      jest.spyOn(FinanceModel, 'query').mockReturnValue({
+        where: jest.fn().mockResolvedValue(mockFinances),
+      } as any);
+
+      const result = await service.findAllFinancesByUserId(1);
+      expect(result).toEqual(mockFinances);
+      expect(FinanceModel.query).toHaveBeenCalled();
+    });
+
+    it('should return falsy if non-deleted finances by user id found', async () => {
+      jest.spyOn(FinanceModel, 'query').mockReturnValue({
+        where: jest.fn().mockResolvedValue(undefined),
+      } as any);
+
+      const result = await service.findAllFinancesByUserId(2);
+      expect(result).toBeFalsy();
+    });
+  });
+
   describe('createFinance', () => {
     it('should create and return a new finance', async () => {
       const newFinance = { userId: 2, valor: 20.2, descricao: 'Descrição 2' };

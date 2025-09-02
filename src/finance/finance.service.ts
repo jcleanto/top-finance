@@ -19,6 +19,11 @@ export class FinanceService {
     return await this.FinanceClass.query().where('isDeleted', false);
   }
 
+  // find all Finances by userId
+  async findAllFinancesByUserId(userId: number): Promise<FinanceInterface[]> {
+    return await this.FinanceClass.query().where('userId', userId);
+  }
+
   // create a new Finance
   async createFinance(newFinance: newFinance): Promise<FinanceInterface> {
     const createdFinance: FinanceInterface = await this.FinanceClass.query().insert(

@@ -16,6 +16,17 @@ export class FinanceController {
       .send({ message: 'Todos os Lançamentos Financeiros logicamente não deletados (isDeleted=false)', data: allFinances, count: allFinances.length });
   }
 
+  @Get('/:userId/user')
+  async getAllFinancesByUserId(
+    @Param('userId', ParseIntPipe) userId: number,
+    @Res() response: Response
+  ) {
+    const allFinancesByUserId = await this.financeService.findAllFinancesByUserId(userId);
+    return response
+      .status(200)
+      .send({ message: 'Todos os Lançamentos Financeiros logicamente não deletados (isDeleted=false) por usuário', data: allFinancesByUserId, count: allFinancesByUserId.length });
+  }
+
   @Get('/:financeId')
   async getFinanceById(
     @Param('financeId', ParseIntPipe) financeId: number,
